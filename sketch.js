@@ -85,7 +85,7 @@ function drawBarChart(inflationData, minInflation, maxInflation) {
   let totalBars = inflationData.length;
   let barSpacing = 5;
   let barWidth = (width - 100) / totalBars - barSpacing;
-  let maxAbsInflation = Math.max(Math.abs(minInflation), Math.abs(maxInflation));
+  let barHeight = Math.max(Math.abs(minInflation), Math.abs(maxInflation));
   let xAxisY = height / 2;
 
   let hoveredYear = null;
@@ -99,7 +99,7 @@ function drawBarChart(inflationData, minInflation, maxInflation) {
     let year = headers[i + 1];
     let inflation = inflationData[i];
     let x = 50 + i * (barWidth + barSpacing);
-    let y = inflation >= 0 ? map(inflation, 0, maxAbsInflation, xAxisY, 50) : map(inflation, 0, -maxAbsInflation, xAxisY, height - 50);
+    let y = inflation >= 0 ? map(inflation, 0, barHeight, xAxisY, 50) : map(inflation, 0, -barHeight, xAxisY, height - 50);
 
     // Draw bar with fixed colors for positive and negative values
     fill(inflation >= 0 ? 'red' : 'green');
