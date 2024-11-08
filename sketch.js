@@ -86,7 +86,7 @@ function drawBarChart(inflationData, minInflation, maxInflation) {
   let barSpacing = 5;
   let barWidth = (width - 100) / totalBars - barSpacing;
   let barHeight = Math.max(Math.abs(minInflation), Math.abs(maxInflation));
-  let xAxisY = height / 2;
+  let xyAxis = height / 2;
 
   let hoveredYear = null;
   let hoveredInflation = null;
@@ -99,11 +99,11 @@ function drawBarChart(inflationData, minInflation, maxInflation) {
     let year = headers[i + 1];
     let inflation = inflationData[i];
     let x = 50 + i * (barWidth + barSpacing);
-    let y = inflation >= 0 ? map(inflation, 0, barHeight, xAxisY, 50) : map(inflation, 0, -barHeight, xAxisY, height - 50);
+    let y = inflation >= 0 ? map(inflation, 0, barHeight, xyAxis, 50) : map(inflation, 0, -barHeight, xyAxis, height - 50);
 
     // Draw bar with fixed colors for positive and negative values
     fill(inflation >= 0 ? 'red' : 'green');
-    rect(x, inflation >= 0 ? y : xAxisY, barWidth, inflation >= 0 ? xAxisY - y : y - xAxisY);
+    rect(x, inflation >= 0 ? y : xyAxis, barWidth, inflation >= 0 ? xyAxis - y : y - xyAxis);
 
     // Draw year label with space above/below the bar
     textAlign(CENTER);
@@ -111,7 +111,7 @@ function drawBarChart(inflationData, minInflation, maxInflation) {
     text(year, x + barWidth / 2, inflation >= 0 ? y - labelOffset : y + labelOffset);
 
     // Detect hover and set data for tooltip display
-    if (mouseX > x && mouseX < x + barWidth && mouseY > min(y, xAxisY) && mouseY < max(y, xAxisY)) {
+    if (mouseX > x && mouseX < x + barWidth && mouseY > min(y, xyAxis) && mouseY < max(y, xyAxis)) {
       hoveredYear = year;
       hoveredInflation = inflation;
     }
