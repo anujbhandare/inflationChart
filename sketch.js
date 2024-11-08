@@ -66,8 +66,8 @@ function drawAxes() {
   textSize(16); // Increased font size for axis labels
   fill(0); // Fixed color to black for consistency
   
-  let xAxisY = height / 2;
-  line(50, xAxisY, width - 50, xAxisY); // X-axis
+  let xyAxis = height / 2;
+  line(50, xyAxis, width - 50, xyAxis); // X-axis
   line(50, 50, 50, height - 50); // Y-axis
 
   textAlign(CENTER);
