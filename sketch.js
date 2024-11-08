@@ -22,8 +22,8 @@ function setup() {
   // Create input field and search button, centered
   countryInput = createInput();
   searchButton = createButton('Search');
-  const totalWidth = countryInput.width + searchButton.width;
-  const centerX = (width - totalWidth) / 2;
+  let totalWidth = countryInput.width + searchButton.width;
+  let centerX = (width - totalWidth) / 2;
   countryInput.position(centerX, 10);
   searchButton.position(centerX + countryInput.width, 10);
   searchButton.mousePressed(searchCountry);
@@ -31,12 +31,8 @@ function setup() {
   textSize(12);
 }
 
-function windowResized() {
-  resizeCanvas(windowWidth, windowHeight); // Resize canvas dynamically
-}
-
 function searchCountry() {
-  const countryName = countryInput.value().toLowerCase();
+  let countryName = countryInput.value().toLowerCase();
   filteredData = dataRows.find(data => data.country.toLowerCase() === countryName);
 
   if (!filteredData) {
@@ -56,8 +52,8 @@ function draw() {
     textAlign(CENTER);
     text(message, width / 2, height / 2 - 20);
   } else if (filteredData) {
-    const minInflation = Math.min(...filteredData.inflation);
-    const maxInflation = Math.max(...filteredData.inflation);
+    let minInflation = Math.min(...filteredData.inflation);
+    let maxInflation = Math.max(...filteredData.inflation);
     drawBarChart(filteredData.inflation, minInflation, maxInflation);
   }
 }
@@ -69,7 +65,7 @@ function drawAxes() {
   textSize(16); // Increased font size for axis labels
   fill(0); // Fixed color to black for consistency
   
-  const xAxisY = height / 2;
+  let xAxisY = height / 2;
   line(50, xAxisY, width - 50, xAxisY); // X-axis
   line(50, 50, 50, height - 50); // Y-axis
 
@@ -85,23 +81,23 @@ function drawAxes() {
 }
 
 function drawBarChart(inflationData, minInflation, maxInflation) {
-  const totalBars = inflationData.length;
-  const barSpacing = 5;
-  const barWidth = (width - 100) / totalBars - barSpacing;
-  const maxAbsInflation = Math.max(Math.abs(minInflation), Math.abs(maxInflation));
-  const xAxisY = height / 2;
+  let totalBars = inflationData.length;
+  let barSpacing = 5;
+  let barWidth = (width - 100) / totalBars - barSpacing;
+  let maxAbsInflation = Math.max(Math.abs(minInflation), Math.abs(maxInflation));
+  let xAxisY = height / 2;
 
   let hoveredYear = null;
   let hoveredInflation = null;
 
-  // Set a consistent font size and color for year labels on bars
+  // Set a font size and color for year labels on bars
   textSize(14); // Increased font size for year labels on bars
   fill(0); // Set color to black for year labels
 
   for (let i = 0; i < totalBars; i++) {
-    const year = headers[i + 1];
-    const inflation = inflationData[i];
-    const x = 50 + i * (barWidth + barSpacing);
+    let year = headers[i + 1];
+    let inflation = inflationData[i];
+    let x = 50 + i * (barWidth + barSpacing);
     let y = inflation >= 0 ? map(inflation, 0, maxAbsInflation, xAxisY, 50) : map(inflation, 0, -maxAbsInflation, xAxisY, height - 50);
 
     // Draw bar with fixed colors for positive and negative values
