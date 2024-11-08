@@ -2,7 +2,8 @@ let table;
 let headers = [];
 let dataRows = [];
 let filteredData = null;
-let countryInput, searchButton;
+let countryInput;
+let searchButton;
 let message = ""; // Message for invalid country input
 
 function preload() {
