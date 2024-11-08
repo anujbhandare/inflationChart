@@ -20,7 +20,7 @@ function setup() {
     dataRows.push({ country: row[0], inflation: row.slice(1).map(Number) });
   }
 
-  // Create input field and search button, centered
+  // Create input field and search button
   countryInput = createInput();
   searchButton = createButton('Search');
   let totalWidth = countryInput.width + searchButton.width;
